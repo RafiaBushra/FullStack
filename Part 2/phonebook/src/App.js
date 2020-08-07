@@ -1,20 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Persons from './components/Persons'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
+import axios from 'axios'
 
-const App = (props) => {
-  const [ persons, setPersons ] = useState(props.persons)
+
+const App = () => {
+  const [ persons, setPersons ] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ filter, setFilter ] = useState('')
 
-  
+  useEffect(() => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }, [])
+  console.log('render', persons.length, 'persons')
   const addPerson = (event) => {
       event.preventDefault()
       const personObject = {
         name: newName,
-        number: newNumber
+        number: newNumber,
+        id: persons.length + 1
       }
       const duplicate = persons.filter(person => person.name === personObject.name)
       if (duplicate.length) {
@@ -33,7 +45,6 @@ const App = (props) => {
   const handleFilterChange = (event) => {
     setFilter(event.target.value)
   }  
-
   return (
     <div>
       <h2>Phonebook</h2>

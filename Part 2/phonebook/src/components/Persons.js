@@ -8,6 +8,7 @@ const Display = ({ person }) => {
 
 const Persons = (props) => {
     const filtered = !props.filter.length? props.persons : props.persons.filter(person => person.name.toLowerCase().includes(props.filter.toLowerCase()))
+    console.log(filtered)
     return (
         <ul>
             {filtered.map(person => <Display key={person.name} person={person}/>)}
