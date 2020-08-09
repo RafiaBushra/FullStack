@@ -1,7 +1,7 @@
 import React from "react"
 
 const Data = ({ data }) => {
-  return (
+   return (
     <div>    
       {data.name} <br/>
     </div>

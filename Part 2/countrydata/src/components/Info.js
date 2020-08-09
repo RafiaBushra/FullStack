@@ -44,7 +44,7 @@ const Info = ({ country }) => {
         })
     }, [params])
     
-    return (        
+    return (      
         <div>
             <h1>{country.name}</h1>
             <p>Capital {country.capital}</p>
