@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Display from './components/Display'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
+import Notification from './components/Notifications'
 import shortcuts from './services/shortcuts'
-
 
 const App = () => {
   const [ persons, setPersons ] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ filter, setFilter ] = useState('')
+  const [ notification, setNotification ] = useState('')
 
   useEffect(() => {
     shortcuts.getAll()
@@ -49,6 +50,21 @@ const App = () => {
             person.id === duplicate.id? returnedPerson : person
           )) 
         })
+        .catch(error => {
+          setNotification(
+            `Fail: the person '${personObject.name}' was already deleted from the phonebook.`
+          )
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
+          return null
+        })
+        setNotification(
+          `Success: updated ${personObject.name}'s number.`
+        )
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
       } // After the user confirms that he wants to replace the old number, shortcuts.update() sends a axios.put() request to server and updates the contact. Then setPersons updates the state with the modified contact.
     }
     else {
@@ -56,6 +72,12 @@ const App = () => {
       .then(returnedPerson => {
         setPersons(persons.concat(personObject))
       })
+      setNotification(
+        `Success: added ${personObject.name} to phonebook.`
+      )
+      setTimeout(() => {
+        setNotification(null)
+      }, 5000)
     } // If it is a new contact then shortcuts.create() sends a axios.post request to server which adds the new contact to db.json. setPersons then adds the new contact to the end of the persons state array.
     setNewName('')
     setNewNumber('')     
@@ -67,13 +89,22 @@ const App = () => {
         shortcuts.remove(id)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
-        }) // shortcuts.remove() sends axios.delete() request to server and removes the entry associated with the id from db.json. setPersons() then updates the persons state so the deleted contact doesn't show up anymore.
+        }) // shortcuts.remove() sends axios.delete() request to server and removes the entry associated with the id from db.json. setPersons() then updates the persons state so the deleted contact doesn't show up anymore. 
         .catch(error => {
-          alert(
-            `The person '${deleteThis.name}' was already deleted from the phonebook.`
+          setNotification(
+            `Fail: the person '${deleteThis.name}' was already deleted from the phonebook.`
           )
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
           setPersons(persons.filter(p => p.id !== id))
         }) // Not really sure why this would be the case since every single delete button is associated with a contact that definitely still exists in the database, but oh well.
+        setNotification(
+          `Success: deleted ${deleteThis.name} from phonebook.`
+        )
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
     }
   }
   const handleNameChange = (event) => {
@@ -88,6 +119,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification}/>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <h3>Add new person</h3>
       <PersonForm handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} newName={newName} newNumber={newNumber} addPerson={addPerson}/>
