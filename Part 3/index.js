@@ -58,7 +58,7 @@ let persons = [
 
   const generateId = () => {
     return Math.floor(Math.random() * Math.floor(100))
-  }
+  } // Generates a random ID ranging from 1 to 100 for new notes.
   
   app.post('/api/persons', (request, response) => {
     const body = request.body
@@ -91,7 +91,7 @@ let persons = [
     response.json(person)
   })
 
-  const PORT = 3001
+  const PORT = process.env.PORT || 3001
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })
