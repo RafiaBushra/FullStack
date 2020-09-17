@@ -1,10 +1,13 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const mongoose = require('mongoose')
 
 const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(result => {
     console.log('connected to MongoDB')
   })
@@ -13,9 +16,21 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   })
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
-  date: Date,
+  name: {
+    type: String,
+    minlength: 3,
+    required: true,
+    unique: true
+  },
+  number: {
+    type: String,
+    minlength: 8,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true
+  },
 })
 
 personSchema.set('toJSON', {

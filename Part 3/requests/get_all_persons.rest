@@ -2,22 +2,22 @@ get http://localhost:3001/info
 ###
 GET http://localhost:3001/api/people
 ###
-GET http://localhost:3001/api/people/5f5f7b7d5979b706909263e1
+GET http://localhost:3001/api/people/5f60c9dd4ec51a3de873f0ba
 ###
 POSt http://localhost:3001/api/people
 Content-Type: application/json
 
 {
     "name": "Rafia",
-    "number": "123-456-781"
+    "number": "1111111"
 }
 ### 
-DELETE http://localhost:3001/api/people/5f6097b6fe68943b70cb46b1
+DELETE http://localhost:3001/api/people/5f60c9dd4ec51a3de873f0ba
 ###
-PUT http://localhost:3001/api/people/5f609730fe68943b70cb46b0
+PUT http://localhost:3001/api/people/5f60c9c94ec51a3de873f0b9
 Content-Type: application/json
 
 {
-    "name": "Rafia",
-    "number": "123-456-789"
+    "name": "Rafia B",
+    "number": "00000000"
 }
