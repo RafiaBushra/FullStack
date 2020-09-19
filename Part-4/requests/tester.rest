@@ -4,8 +4,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "Writers' Block? Deal With It!",
-  "author": "Rafia Bushra",
-  "url": "https://rafiabee.blogspot.com/",
-  "likes": 0
+  "title": "testaaaaaaaa",
+  "author": "aaaaaaaaaaaaa",
+  "url": "adssadasdasdasdasd",
+  "likes": 9
 }
