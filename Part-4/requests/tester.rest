@@ -9,3 +9,13 @@ Content-Type: application/json
   "url": "adssadasdasdasdasd",
   "likes": 9
 }
+###
+PUT http://localhost:3003/api/blogs/5f665f5eab96262bd8649ff1
+Content-Type: application/json
+
+{
+  "title": "Writers' Block? Deal With It!",
+    "author": "Rafia Bushra",
+    "url": "https://rafiabee.blogspot.com/",
+    "likes": 20
+}

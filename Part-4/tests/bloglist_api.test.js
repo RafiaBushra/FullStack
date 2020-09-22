@@ -6,6 +6,7 @@ const helper = require('./test_helper')
 const api = supertest(app)
 
 const Blog = require('../models/blog')
+const blog = require('../models/blog')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
@@ -71,7 +72,7 @@ test('default value of likes is 0', async () => {
 
 })
 
-test.only('blog without title and url is not added', async () => {
+test('blog without title and url is not added', async () => {
   const newBlog = {
     author: 'Robert C. Martin'
   }
@@ -84,6 +85,52 @@ test.only('blog without title and url is not added', async () => {
   const blogsAtEnd = await helper.blogsInDb()
 
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
+})
+
+describe('deletion of a blog', () => {
+  test('succeeds with status code 204 if id is valid', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToDelete = blogsAtStart[0]
+
+    await api
+      .delete(`/api/blogs/${blogToDelete.id}`)
+      .expect(204)
+
+    const blogsAtEnd = await helper.blogsInDb()
+
+    expect(blogsAtEnd).toHaveLength(
+      helper.initialBlogs.length - 1
+    )
+
+    const titles = blogsAtEnd.map(r => r.title)
+
+    expect(titles).not.toContain(blogToDelete.title)
+  })
+})
+
+describe('updating the contents of a blog post', () => {
+  test.only('succeeds if id is valid', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToUpdate = blogsAtStart[0]
+
+    const update = {
+      title: blogToUpdate.title,
+      author: blogToUpdate.author,
+      url: blogToUpdate.url,
+      likes: 20
+    }
+
+    await api
+      .put(`/api/blogs/${blogToUpdate.id}`)
+      .send(update)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    const latestEntry = blogsAtEnd[0]
+
+    expect(latestEntry.likes).toBe(20)
+  })
 })
 
 afterAll(() => {
