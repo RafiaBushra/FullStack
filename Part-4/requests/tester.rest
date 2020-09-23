@@ -1,21 +1,44 @@
 GET http://localhost:3003/api/blogs
 ###
+GET http://localhost:3003/api/users
+###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJhZmlhIiwiaWQiOiI1ZjZiNDdjNDI4NDMyODQzZTRlOWMyN2UiLCJpYXQiOjE2MDA4NzQzODJ9.2Q7Px4UhrnU_k4qLxahzbbj9XSU5rRxlDUUbqHO8gtM
 
 {
-  "title": "testaaaaaaaa",
-  "author": "aaaaaaaaaaaaa",
-  "url": "adssadasdasdasdasd",
-  "likes": 9
+  "title": "TestTitle1",
+  "author": "Rafia B.",
+  "url": "testtesttest.com",
+  "likes": 1001
 }
 ###
-PUT http://localhost:3003/api/blogs/5f665f5eab96262bd8649ff1
+POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-  "title": "Writers' Block? Deal With It!",
-    "author": "Rafia Bushra",
-    "url": "https://rafiabee.blogspot.com/",
-    "likes": 20
+  "username": "Rafia",
+  "name": "Rafia B",
+  "password": "Password"
+}
+###
+POST http://localhost:3003/api/logins
+Content-Type: application/json
+
+{
+  "username": "Rafia",
+  "password": "Password"
+}
+###
+DELETE http://localhost:3003/api/blogs/BLOGIDHERE
+Authorization: bearer 
+###
+PUT http://localhost:3003/api/blogs/BLOGIDHERE
+Content-Type: application/json
+
+{
+  "title": "TestTitle",
+  "author": "Rafia B.",
+  "url": "testtesttest.com",
+  "likes": 10
 }

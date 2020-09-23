@@ -1,6 +1,6 @@
 const listHelper = require('../utils/list_helper')
 
-describe('favorite blog', () => {
+describe('Favorite blog', () => {
   const listWithOneBlog = [
     {
       _id: '5a422aa71b54a676234d17f8',
@@ -62,9 +62,9 @@ describe('favorite blog', () => {
     __v: 0
   }
 
-  test('of empty list is null', () => expect(listHelper.favoriteBlog([])).toBe(null))
+  test('of empty list is null.', () => expect(listHelper.favoriteBlog([])).toBe(null))
 
-  test('when list has only one blog is the blog itself', () => expect(listHelper.favoriteBlog(listWithOneBlog)).toEqual(listWithOneBlog[0]))
+  test('when list has only one blog is the blog itself.', () => expect(listHelper.favoriteBlog(listWithOneBlog)).toEqual(listWithOneBlog[0]))
 
-  test('of a bigger list is calculated right', () => expect(listHelper.favoriteBlog(biggerList)).toEqual(fav))
+  test('of a bigger list is calculated right.', () => expect(listHelper.favoriteBlog(biggerList)).toEqual(fav))
 })
