@@ -1,6 +1,6 @@
 GET http://localhost:3003/api/blogs
 ###
-GET http://localhost:3003/api/users
+GET http://localhost:3001/api/users
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
@@ -13,20 +13,20 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJhZ
   "likes": 1001
 }
 ###
-POST http://localhost:3003/api/users
+POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-  "username": "Rafia",
-  "name": "Rafia B",
-  "password": "Password"
+  "username": "tester",
+  "name": "Mister Tester",
+  "password": "112233"
 }
 ###
 POST http://localhost:3003/api/logins
 Content-Type: application/json
 
 {
-  "username": "Rafia",
+  "username": "tester",
   "password": "Password"
 }
 ###

@@ -26,7 +26,7 @@ loginRouter.post('/', async (request, response) => {
 
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name })
+    .send({ token, username: user.username, name: user.name, id: user.id })
 }) // Checks the validity of the username and password and then creates a login token for the user. Sends the token as response so it can be used to authorize blog modifications.
 
 module.exports = loginRouter

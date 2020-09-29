@@ -4,7 +4,7 @@ const Blog = require('../models/blog')
 const User = require('../models/user')
 
 blogsRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({}).populate('user', { username: 1, name:1 })
+  const blogs = await Blog.find({}).populate('user', { username: 1, name: 1, id: 1 })
   response.json(blogs)
 }) // Fetches all the blogs stored in the database.
 
@@ -65,11 +65,11 @@ blogsRouter.put('/:id', async (request, response) => {
   if (!request.token || !decodedToken.id) {
     return response.status(401).json({ error: 'Token is missing or invalid!' })
   }
-
   const loggedUser = await User.findById(decodedToken.id)
   const blogToUpdate = await Blog.findById(request.params.id)
 
   if (blogToUpdate.user.toString() === loggedUser.id.toString()) {
+
     const body = request.body
     const blog = {
       title: body.title,
