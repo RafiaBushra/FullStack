@@ -36,12 +36,12 @@ const Blog = ({ blog, addLikes, removeEntry, currentUser }) => {
   }
 
   return (
-    < div style={blogStyle} >
+    < div style={blogStyle} className='blog'>
       {blog.title} {blog.author}
-      <div style={hideWhenVisible}>
+      <div style={hideWhenVisible} className='hidden'>
         <button onClick={toggleVisibility} style={{ float: 'right' }}>View</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible} className='visible'>
         <button onClick={toggleVisibility}>Hide</button>
         <div style={{ float: 'left' }}>
           {blog.url}
@@ -56,7 +56,6 @@ const Blog = ({ blog, addLikes, removeEntry, currentUser }) => {
           {currentUser.id === blog.user.id || currentUser.id === blog.user ?
             <button onClick={handleRemove}>Remove</button> : ''}
         </div>
-
       </div>
     </div>
   )
