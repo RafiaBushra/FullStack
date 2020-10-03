@@ -1,11 +1,16 @@
 import React, { useState, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
+import '../App.css'
 
 const Togglable = React.forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
 
-  const hideWhenVisible = { display: visible ? 'none' : '' }
-  const showWhenVisible = { display: visible ? '' : 'none' }
+  const hideChildren = {
+    display: visible ? 'none' : 'inline-block'
+  }
+  const showChildren = {
+    display: visible ? 'inline-block' : 'none'
+  }
 
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -19,10 +24,14 @@ const Togglable = React.forwardRef((props, ref) => {
 
   return (
     <div>
-      <div style={hideWhenVisible}>
+      <div
+        className='hideChildren'
+        style={hideChildren}>
         <button onClick={toggleVisibility}>{props.buttonLabel}</button>
       </div>
-      <div style={showWhenVisible}>
+      <div
+        className='showChildren'
+        style={showChildren}>
         {props.children}
         <button onClick={toggleVisibility}>Cancel</button>
       </div>

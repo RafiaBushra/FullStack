@@ -1,47 +1,138 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(248, 227, 230);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: rgb(241, 116, 127);
+  font-size: 10mm;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  color: rgb(241, 116, 127);
+  font-size: 8mm;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  color: rgb(241, 116, 127);
+  font-size: 6mm;
 }
 
 button {
-  display: flex;
-  color: blue;
+  width: fit-content;
+  background-color: rgb(241, 116, 127);
+  color: white;
+  border: 0.5mm;
+  border-style: solid;
+  border-color: rgb(199, 97, 106);
+  border-radius: 2mm;
+  text-align: left;
+  padding: 1mm 5mm;
+  display: inline-block;
+  font-size: 5mm;
+  margin: 1mm 1mm;
+  transition-duration: .4s;
 }
 
-p {
-  color:red;
+button:hover {
+  width: fit-content;
+  background-color: white; 
+  color: rgb(184, 76, 85);
+  border: 1mm;
+  border-style: solid;
+  border-color: rgb(241, 116, 127);
+  border-radius: 4mm;
+  padding: 1mm 5mm;
+  display: inline-block;
+  font-size: 5mm;
+  margin: 1mm 1mm;
 }
+
+input {
+  background-color: white;
+  color: rgb(241, 116, 127);
+  font-size: 6.5mm;
+  width: 40mm;
+  border: .5mm;
+  border-style: solid;
+  border-color: rgb(199, 97, 106);
+  border-radius: 2mm;
+  text-align: left;
+  margin: .8mm .5mm;
+  transition: width 0.4s ease;
+}
+
+input:focus {
+  background-color: white;
+  color: rgb(241, 116, 127);
+  font-size: 6.5mm;
+  width: 70mm;
+  border: .5mm;
+  border-style: solid;
+  border-color: rgb(199, 97, 106);
+  border-radius: 3mm;
+  margin: .8mm .5mm;
+}
+
+label {
+  color: rgb(241, 116, 127);
+  font-size: 7mm;
+  margin-right: 1mm;
+}
+
+.error {
+  text-align: center;
+  color: rgb(250, 177, 177);
+  background-color: indianred;
+  font-size: x-large;
+  border-style: solid;
+  border-radius: 5mm;
+  padding: 2mm;
+  margin-bottom: 5mm;
+}
+
+.success {
+  text-align: center;
+  color: rgb(138, 170, 49);
+  background-color: rgb(255, 251, 196);
+  font-size: x-large;
+  border-style: solid;
+  border-radius: 5mm;
+  padding: 2mm;
+  margin-bottom: 5mm;
+}
+
+.instructions {
+  color: rgb(241, 116, 127);
+  font-size: 5mm;
+}
+
+.logged-in {
+  width: fit-content;
+  background-color: rgb(241, 116, 127);
+  color: white;
+  text-align: center;
+  font-size: 5mm;  
+  border-style: solid;
+  border-color: rgb(219, 97, 108);
+  border-radius: 5mm;
+  padding: 2mm;
+}
+
+.blog {
+  font-size: 6mm;
+  border-style: dotted;
+  border-color: rgb(219, 97, 108);
+  border-radius: 5mm;
+  color:  rgb(185, 88, 96);
+  background-color: lavenderblush;
+  display: 'inline-block';
+  padding-left: 2mm;
+  margin-bottom: 1mm;
+}
+
+.blogForm {
+  font-size: 6mm;
+  color:  rgb(185, 88, 96);
+  margin-bottom: 1mm;
+}
+

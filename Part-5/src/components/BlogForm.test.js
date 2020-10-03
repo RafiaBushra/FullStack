@@ -1,10 +1,10 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import BlogForm from './BlogForm'
 
 describe('<BlogForm />', () => {
-  test('<BlogForm /> calls createBlog with the correct parameters.', () => {
+  test('calls createBlog with the correct parameters.', () => {
     const createBlog = jest.fn()
 
     const component = render(<BlogForm createBlog={createBlog} />)

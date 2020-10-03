@@ -99,7 +99,7 @@ const App = () => {
       let temp = [...blogs]
       const removed = temp.splice(temp.findIndex(blog => blog.id === id), 1)
       setBlogs(temp)
-      setNotification(`Deleted ${removed.title} from blog list.`)
+      setNotification(`Deleted ${removed[0].title} from blog list.`)
       setTimeout(() => {
         setNotification(null)
       }, 5000)
@@ -117,12 +117,13 @@ const App = () => {
       {user === null
         ?
         <div>
-          <h2>Log into the application.</h2>
+          <h1>Welcome to my Bloglist app!</h1>
+          <p className="instructions">Log into the application to use it.</p>
           {loginForm()}
         </div>
         :
         <div>
-          <p>{user.name} logged-in.</p>
+          <p className="logged-in">{user.name} logged in.</p>
           <button onClick={handleLogout}>Log out</button>
           {blogForm()}
           <h2>Blogs</h2>

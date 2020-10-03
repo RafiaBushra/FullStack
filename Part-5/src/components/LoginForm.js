@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import loginService from '../services/login'
 import Notification from './Notification'
+import '../App.css'
 
 const LoginForm = ({ loginHelper, loggedInFlag }) => {
   const [username, setUsername] = useState('')
@@ -44,25 +45,29 @@ const LoginForm = ({ loginHelper, loggedInFlag }) => {
       <Notification message={notification} />
       <h2>Login</h2>
 
-      <form onSubmit={handleLogin}>
+      <form
+        className="loginForm"
+        onSubmit={handleLogin}>
         <div>
-          Username
+          <label>Username:</label>
           <input
+            id="username"
             value={username}
             onChange={handleUsernameChange}
           />
         </div>
         <div>
-          Password
+          <label>Password:</label>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">Login</button>
+        <button id="loginButton" type="submit">Login</button>
       </form>
-    </div>
+    </div >
   )
 }
 

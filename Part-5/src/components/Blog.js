@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import '../App.css'
+
 const Blog = ({ blog, addLikes, removeEntry, currentUser }) => {
   const [visible, setVisible] = useState(false)
 
-  const hideWhenVisible = { display: visible ? 'none' : '' }
-  const showWhenVisible = { display: visible ? '' : 'none' }
+  const hideDetails = {
+    display: visible ? 'none' : 'inline'
+  }
+  const showDetails = {
+    display: visible ? 'inline' : 'none'
+  }
 
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -26,36 +31,27 @@ const Blog = ({ blog, addLikes, removeEntry, currentUser }) => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author} from blog list?`)) removeEntry(blog.id)
   }
 
-  const blogStyle = {
-    display: 'flex',
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
-
   return (
-    < div style={blogStyle} className='blog'>
-      {blog.title} {blog.author}
-      <div style={hideWhenVisible} className='hidden'>
-        <button onClick={toggleVisibility} style={{ float: 'right' }}>View</button>
+    <div className='blog'>
+      {blog.title} by {blog.author}
+      <div style={hideDetails} className='hidden'>
+        <button onClick={toggleVisibility}>View</button>
       </div>
-      <div style={showWhenVisible} className='visible'>
+      <div style={showDetails} className='visible'>
         <button onClick={toggleVisibility}>Hide</button>
-        <div style={{ float: 'left' }}>
-          {blog.url}
-          <p>
+        <dl>
+          <dt>URL: {blog.url}</dt>
+          <dt id="likes">
             Likes: {blog.likes}
             <button
+              id="likeButton"
               onClick={handleLike}
-              style={{ display: 'inline-block' }}
             >Like</button>
-          </p>
-          {blog.user.name || currentUser.name}
-          {currentUser.id === blog.user.id || currentUser.id === blog.user ?
-            <button onClick={handleRemove}>Remove</button> : ''}
-        </div>
+          </dt>
+          <dt>User: {blog.user.name || currentUser.name}</dt>
+          <dt>{currentUser.id === blog.user.id || currentUser.id === blog.user ?
+            <button onClick={handleRemove}>Remove</button> : ''}</dt>
+        </dl>
       </div>
     </div>
   )
