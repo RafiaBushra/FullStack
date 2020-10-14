@@ -15,7 +15,7 @@ const clearNotification = () => {
   }
 }
 
-export const setNotification = (notification, timer) => {
+export const setNotification = (notification, timeout) => {
   return async (dispatch) => {
     dispatch({
       type: 'NOTIFY',
@@ -23,7 +23,7 @@ export const setNotification = (notification, timer) => {
     })
     setTimeout(() => {
       dispatch(clearNotification())
-    }, timer * 1000)
+    }, timeout * 1000)
 
   }
 }

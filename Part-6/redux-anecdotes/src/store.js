@@ -17,7 +17,8 @@ const store = createStore(
   reducer,
   composeWithDevTools(
     applyMiddleware(thunk)
-  ))
+  )
+)
 
 anecdoteService.getAll().then(anecdotes =>
   store.dispatch(initializeAnecdotes(anecdotes))

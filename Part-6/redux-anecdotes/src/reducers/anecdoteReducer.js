@@ -16,7 +16,8 @@ const reducer = (state = [], action) => {
       return state.map(anecdote =>
         anecdote.id !== id ? anecdote : changedAnecdote
       )
-    default: return state
+    default:
+      return state
   }
 }
 
